@@ -68,13 +68,13 @@ The conversation revealed that Ali was experiencing difficulties accessing the *
 
 **Answer: Tiger#4821**
 
-IT support provided Ali with a temporary password to help resolve the account access issue.
+IT support provided Ali with a temporary password.
 
 ### Q8. What is the guest Wi-Fi password?
 
 **Answer: BlueHarbor77**
 
-Ali also requested the guest Wi-Fi password during the conversation. IT support shared the password through the chat.
+Ali also requested the guest Wi-Fi password during the conversation.
 
 ---
 
@@ -82,17 +82,15 @@ Ali also requested the guest Wi-Fi password during the conversation. IT support 
 
 Through this activity, I learned how to:
 
-- Use **Statistics → Conversations** to identify active TCP connections and communication ports.
 - Apply Wireshark display filters to isolate specific network traffic.
-- Analyze TCP handshakes to determine which device initiated a connection.
 - Use **Follow TCP Stream** to reconstruct and inspect conversations between communicating devices.
-- Identify sensitive information transmitted through unencrypted network communication.
+- Use encrypted tools (**TLS/HTTPS**)
+  
+## 📊 Summary
 
-## 💡 Security Insight
+- **Chat Communication:** `192.168.10.45` → `192.168.10.20`
+- **Protocol / Port:** TCP `5000`
+- **TCP Stream:** `5`
+- **Sensitive Information Exposed:** A temporary password and guest Wi-Fi password were transmitted in plain text.
 
-This activity demonstrates the security risks of transmitting sensitive information through plain-text communication protocols.
-
-Since the chat application does not encrypt its messages, anyone with access to the captured network traffic may be able to read confidential information, including temporary passwords and Wi-Fi credentials.
-
-**Recommendation:** Organizations should use encrypted communication protocols and avoid sharing passwords or other sensitive credentials through unencrypted applications.
 
