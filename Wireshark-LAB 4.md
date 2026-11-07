@@ -85,6 +85,14 @@ Through this activity, I learned how to:
 - Apply Wireshark display filters to isolate specific network traffic.
 - Use **Follow TCP Stream** to reconstruct and inspect conversations between communicating devices.
 - Use encrypted tools (**TLS/HTTPS**)
+
+---
+## 🛠️ Wireshark Filters Used
+
+| Display Filter | Purpose |
+|---|---|
+| `tcp.port == 5000` | Identifies traffic using TCP port 5000 and isolates the office chat communication. |
+| `tcp.stream eq 5` | Filters packets belonging to TCP Stream 5 to examine the complete chat conversation. |
   
 ## 📊 Summary
 
