@@ -89,6 +89,12 @@ Through this activity, I gained a better understanding of:
 - Identifying open and closed ports through TCP responses.
 - Recognizing potential port scanning activities during network investigations.
 
+🛠️ Wireshark Filters Used
+| Display Filter	| Purpose |
+|---|---|
+|`tcp.flags.reset == 1`	| Identifies TCP RST packets to investigate reset connections and suspicious traffic. |
+| `tcp.flags.syn == 1 && tcp.flags.ack == 1` |	Identifies SYN-ACK packets to determine which ports are open.|
+
 ### 🚀 LAB 3 Completed!
 
 Another step forward in my cybersecurity learning journey. Looking forward to exploring more network analysis techniques and hands-on SOC investigation activities!
