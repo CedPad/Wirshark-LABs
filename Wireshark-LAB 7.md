@@ -19,6 +19,8 @@ I opened **Statistics → Protocol Hierarchy** in Wireshark and examined the pro
 
 FTP uses `USER` and `PASS` commands to authenticate users when connecting to an FTP server.
 
+---
+
 **Q2. Which IP address is the FTP server that was attacked?**
 
 **Answer: `192.168.10.20`**
@@ -27,6 +29,8 @@ By examining the source and destination IP addresses of the FTP communication, I
 
 <img width="1364" height="764" alt="FTP Server Identification" src="https://github.com/user-attachments/assets/1cb2e433-be18-4ded-865e-3b33278e3744" />
 
+---
+
 **Q3. Which IP address sent all the login attempts?**
 
 **Answer: `192.168.10.66`**
@@ -34,6 +38,8 @@ By examining the source and destination IP addresses of the FTP communication, I
 I applied the `ftp.request` display filter to isolate FTP requests. By checking the source IP addresses, I identified `192.168.10.66` as the computer responsible for sending the login attempts.
 
 <img width="1361" height="756" alt="FTP Requests" src="https://github.com/user-attachments/assets/407e51c5-e64a-4496-a524-4b0db757cc65" />
+
+---
 
 **Q4. Which username did the attacker try again and again?**
 
@@ -49,6 +55,8 @@ The captured packets showed repeated login attempts using the username `admin`.
 
 <img width="1362" height="755" alt="FTP Username Attempts" src="https://github.com/user-attachments/assets/0646d9cd-fcc9-4abf-ac61-213215c94cbf" />
 
+---
+
 **Q5. Which FTP reply code means "Login incorrect"?**
 
 **Answer: `530` – Login incorrect**
@@ -56,6 +64,8 @@ The captured packets showed repeated login attempts using the username `admin`.
 By examining the FTP response packets, I found response code `530`, which indicates that the login attempt was unsuccessful.
 
 <img width="1362" height="765" alt="FTP Login Incorrect Response" src="https://github.com/user-attachments/assets/54881309-eb6e-4a7c-bbc3-34b3fee3bf21" />
+
+---
 
 **Q6. How many failed logins did the attacker make?**
 
@@ -71,6 +81,8 @@ The filtered results showed **24 failed login attempts**.
 
 <img width="1357" height="762" alt="Failed FTP Logins" src="https://github.com/user-attachments/assets/d1394ff9-774a-4aeb-bf66-2e4c6dd08fc3" />
 
+---
+
 **Q7. One login finally worked. Which FTP reply code shows a successful login?**
 
 **Answer: `230` – Login successful**
@@ -79,6 +91,8 @@ I examined the FTP response in packet number 284. The server returned response c
 
 <img width="1360" height="757" alt="Successful FTP Login" src="https://github.com/user-attachments/assets/fd391973-3620-4de9-bb61-98ab97c952ea" />
 
+---
+
 **Q8. What password did the attacker use in the successful login?**
 
 **Answer: `Sunshine99`**
@@ -86,6 +100,8 @@ I examined the FTP response in packet number 284. The server returned response c
 I used **Follow → TCP Stream** on packet number 284 to inspect the FTP communication. The successful login credentials were visible because FTP transmitted them in plain text.
 
 <img width="1351" height="767" alt="FTP Credentials in TCP Stream" src="https://github.com/user-attachments/assets/0ce8c543-b811-409f-a99d-c193ac23df18" />
+
+---
 
 **Q9. Many password guesses for one user, followed by one successful login. What type of attack is this?**
 
