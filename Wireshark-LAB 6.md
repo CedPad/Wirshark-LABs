@@ -86,7 +86,6 @@ This section displays the submitted form fields, including the username and pass
 | `http` | Displays HTTP traffic captured in the network. |
 | `http.request.method` | Identifies HTTP requests and their methods, such as GET and POST. |
 | `http.request.method == "POST"` | Isolates POST requests, including submitted login forms. |
-| `ip.addr == 192.168.10.45` | Displays packets involving the staff PC. |
 
 ---
 
