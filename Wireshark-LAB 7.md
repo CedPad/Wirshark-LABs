@@ -19,8 +19,6 @@ I opened **Statistics → Protocol Hierarchy** in Wireshark and examined the pro
 
 FTP uses `USER` and `PASS` commands to authenticate users when connecting to an FTP server.
 
-<img width="1353" height="764" alt="Protocol Hierarchy" src="https://github.com/user-attachments/assets/17be73a6-b96b-4785-8c0b-f2330e7764a1" />
-
 **Q2. Which IP address is the FTP server that was attacked?**
 
 **Answer: `192.168.10.20`**
