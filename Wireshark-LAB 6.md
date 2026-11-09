@@ -103,7 +103,6 @@ This section displays the submitted form fields, including the username and pass
 | `http.request.method` | Identifies HTTP requests and their methods, such as GET and POST. |
 | `http.request.method == "POST"` | Isolates POST requests, including submitted login forms. |
 
----
 
 ## 📊 Investigation Summary
 
