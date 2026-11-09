@@ -64,6 +64,8 @@ After opening the Follow TCP Stream window, I checked the information displayed 
 
 **Answer: Ali**
 
+---
+
 By examining the messages exchanged in the TCP stream, I identified **Ali** as the staff member requesting assistance from IT support.
 
 ### Q6. Which shared drive could the staff member not open?
