@@ -27,11 +27,15 @@ By examining the captured packets, I identified the login communication as using
 
 **Answer:** HTTP (Hypertext Transfer Protocol).
 
+---
+
 **Q2. A web form sends the typed values to the server. Which HTTP method did the sign-in use?**
 
 **Answer:** `POST`
 
 The POST method was used to submit the login credentials from the staff member's browser to the web server.
+
+---
 
 **Q3. Which page path did the form send the sign-in to?**
 
@@ -39,17 +43,23 @@ The POST method was used to submit the login credentials from the staff member's
 
 The packet analysis showed that the login form was submitted to the `/login` endpoint in packet number 72.
 
+---
+
 **Q4. Which PC sent the sign-in?**
 
 **Answer:** Staff PC – `192.168.10.45`
 
 By examining the source IP address of the HTTP POST request, I identified `192.168.10.45` as the computer that submitted the login credentials.
 
+---
+
 **Q5. How many times did the user send the sign-in form?**
 
 **Answer:** 2 POST requests.
 
 Based on the captured traffic, the staff member submitted the login form twice. The first attempt failed, while the second attempt was successful.
+
+---
 
 **Q6. Click one POST packet. In the packet details, open HTML Form URL Encoded. What is the username?**
 
@@ -59,6 +69,8 @@ By expanding **HTML Form URL Encoded** in the packet details, I was able to insp
 
 <img width="1349" height="761" alt="HTML Form URL Encoded" src="https://github.com/user-attachments/assets/70f67c43-5c61-4def-a6f4-3f1e19dbcb4e" />
 
+---
+
 **Q7. The second sign-in worked (the page said "Welcome back"). What password did the user type that time?**
 
 **Answer:** `Mango#2026`
@@ -67,11 +79,15 @@ The second POST request revealed the password submitted by the staff member. Sin
 
 <img width="1354" height="165" alt="Successful Login Response" src="https://github.com/user-attachments/assets/a20e82a3-76e5-48e2-8eab-033595e2a1d2" />
 
+---
+
 **Q8. Which line in the packet details shows the typed username and password in an easy list?**
 
 **Answer:** `HTML Form URL Encoded`
 
 This section displays the submitted form fields, including the username and password, in a readable format.
+
+---
 
 **Q9. How can the company stop people from reading passwords like this?**
 
