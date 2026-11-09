@@ -30,19 +30,27 @@ This unusual pattern prompted me to investigate the source of the traffic and de
 
 Using the display filter `tcp.flags.reset == 1`, I isolated the TCP reset packets and examined their source and destination addresses. Based on the packet analysis, I identified `192.168.10.66` as the suspected attacker's IP address.
 
+---
+
 **Q2. Which IP address is the target of the attacker's packets?**
 
 By examining the source and destination IP addresses, I identified `192.168.10.20` as the target server.
 
+---
+
 **Q3. Look at the attacker's packets in the Info column. One port number is the same in every packet. What is it?**
 
 The common port number is **52311**.
+
+---
 
 **Q4. How many different ports did the attacker try on the target?**
 
 Based on the captured packets and the applied display filter, the attacker attempted to access **40 different ports** on the target server.
 
 ![Port Scanning Analysis](https://github.com/user-attachments/assets/f594712e-bed7-4330-8f34-37a2ddec46e6)
+
+---
 
 **Q5. Some of these ports are open on the server. An open port answers with a SYN, ACK packet. Which ports are open?**
 
@@ -58,11 +66,15 @@ After examining the results, I identified the following open ports:
 
 ![Open Ports Identification](https://github.com/user-attachments/assets/b83b1811-4c2d-42f6-9648-1153c3e9ece5)
 
+---
+
 **Q6. For all the other ports, the server sends a different reply. Which flags does it send back for a closed port?**
 
 The server responds with **RST, ACK (Reset and Acknowledgment)** flags.
 
 This indicates that the connection is being rejected or reset, commonly because the requested port is closed or not accepting connections.
+
+---
 
 **Q7. What type of attack is this?**
 
@@ -95,7 +107,4 @@ Through this activity, I gained a better understanding of:
 |`tcp.flags.reset == 1`	| Identifies TCP RST packets to investigate reset connections and suspicious traffic. |
 | `tcp.flags.syn == 1 && tcp.flags.ack == 1` |	Identifies SYN-ACK packets to determine which ports are open.|
 
-### 🚀 LAB 3 Completed!
-
-Another step forward in my cybersecurity learning journey. Looking forward to exploring more network analysis techniques and hands-on SOC investigation activities!
 
