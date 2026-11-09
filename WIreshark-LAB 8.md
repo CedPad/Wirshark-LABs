@@ -1,55 +1,94 @@
-# 🔍 LAB 8: VoIP call replay
+# 🔍 LAB 8: VoIP Call Replay
 
-Scenario. A phone call was made through the company VoIP system. Capture the traffic, find the call and play it back to learn what was said.
+### Scenario
+A phone call was made through the company's VoIP system. Analyze the captured network traffic to identify the call details and replay the audio to understand what was discussed.
 
-<img width="982" height="485" alt="image" src="https://github.com/user-attachments/assets/4dedd825-15e5-49a5-ba71-92b170287e1a" />
+## 📝 Investigation and Findings
 
-Q1. A phone call was made on the network. Which protocol set up the call (INVITE, Ringing, OK)?
+**Q1. Which protocol set up the call?**
 
-I filtered base on the choices available **(SIP, RTP, DNS, FTP)**. Using the `SIP` filter it shows in the info column the **INVITE, Ringing, OK**
+I used the `sip` filter to examine the call signaling messages. In the Info column, I found the `INVITE`, `180 Ringing`, and `200 OK` messages, which confirmed that SIP (Session Initiation Protocol) was used to establish the call.
 
-<img width="1350" height="759" alt="image" src="https://github.com/user-attachments/assets/0c53efa7-bb97-4a2f-9bb2-c3bbd5dd9eba" />
+<img width="982" alt="SIP call signaling" src="https://github.com/user-attachments/assets/0c53efa7-bb97-4a2f-9bb2-c3bbd5dd9eba" />
 
-Q2. Which protocol carried the voice itself (the many small packets, one every 60 ms)?
+---
 
-I filtered using the `RTP` and shows a 60 ms difference in each number over time and a total of 804 over 1051 packets captured.
+**Q2. Which protocol carried the voice data?**
 
-<img width="1363" height="765" alt="image" src="https://github.com/user-attachments/assets/86be5631-2753-47b9-92bd-9c0d87c9b7a0" />
+I used the `rtp` filter to identify the packets carrying the voice data. I observed multiple small packets transmitted approximately every 60 ms. Out of the 1,051 captured packets, 804 were RTP packets.
 
-Q3. Which extension number made the call? Look at the SIP INVITE.
+<img width="982" alt="RTP packets" src="https://github.com/user-attachments/assets/86be5631-2753-47b9-92bd-9c0d87c9b7a0" />
 
-By using the `sip.Method == "INVITE"` and viewed the packet detail the extension number used from the call is **From: "Ali Raza" < sip`101`@192.168.10.45>**
+---
 
-<img width="1352" height="749" alt="image" src="https://github.com/user-attachments/assets/bebfd0ad-e395-438c-947a-f1bc76e6a38d" />
+**Q3. Which extension number made the call?**
 
-Q4. What is the name of the caller?
+I used the `sip.Method == "INVITE"` filter to locate the call initiation packet. After checking the packet details, I found that the caller used extension `101`.
 
-The name of the caller is from `Ali Raza`.
+---
 
-Q5. Which codec carried the voice? Click one RTP packet and look at the payload type.
+**Q4. What is the caller's name?**
 
-From the packet detail of one RTP packet I checked the payload type is ITU-T G.711 `PCMU` (0).
+From the SIP INVITE packet details, I identified the caller's name as **Ali Raza**.
 
-Q.5 Who answered the call? Play the call and listen to the first words.
+<img width="982" alt="SIP INVITE details" src="https://github.com/user-attachments/assets/bebfd0ad-e395-438c-947a-f1bc76e6a38d" />
 
-<img width="1353" height="762" alt="image" src="https://github.com/user-attachments/assets/552df6cb-631c-4536-8b3d-fa9609113ba9" />
+---
 
-From what I hear during the call was `Sara` answered the call.
+**Q5. Which codec carried the voice?**
 
-Q6. The caller read out a card number to pay an invoice. What are the last 4 digits?
+I opened one of the RTP packets and checked its payload type in the packet details. I found that the voice was carried using the G.711 PCMU codec (Payload Type 0).
 
-The last 4 didgits are `2394`.
+---
 
-Q7. What expiry date did the caller say?
+**Q6. Who answered the call?**
 
-The expiry date is `09/28`.
+I replayed the captured RTP audio and listened to the beginning of the conversation. Based on what I heard, the person who answered the call was **Sara**, using extension `202`.
 
-Q8. How can the company stop people from listening to calls like this?
+<img width="982" alt="VoIP audio playback" src="https://github.com/user-attachments/assets/552df6cb-631c-4536-8b3d-fa9609113ba9" />
 
-Encrypt the call (SRTP).
+---
 
-Summary
-Call setup: SIP (INVITE, 180 Ringing, 200 OK, ACK, BYE). Voice: RTP, codec G.711 PCMU
-Caller: Ali Raza (extension 101). Answered by: Sara (extension 202)
-Spoken in clear: card number ending 2394, expiry 09/28
-Fix: encrypt calls with SRTP (and use TLS for SIP)
+**Q7. What were the last four digits of the card number?**
+
+After listening to the recorded conversation, I identified the last four digits of the card number as `2394`.
+
+---
+
+**Q8. What expiry date did the caller mention?**
+
+From the audio recording, I heard the caller mention the card's expiry date as `09/28`.
+
+---
+
+**Q9. How can the company prevent unauthorized people from listening to calls?**
+
+To prevent unauthorized people from listening to VoIP conversations, the company should implement Secure RTP (SRTP) to encrypt voice traffic and TLS to protect SIP signaling.
+
+## 📌 Summary
+
+| Category | Findings |
+|---|---|
+| Call Setup | SIP |
+| Voice Protocol | RTP |
+| Codec | G.711 PCMU |
+| Caller | Ali Raza |
+| Caller Extension | 101 |
+| Receiver | Sara |
+| Receiver Extension | 202 |
+| Card Number (Last 4 Digits) | 2394 |
+| Expiry Date | 09/28 |
+
+## 🛠️ Wireshark Filters Used
+
+| Display Filter | Purpose |
+|---|---|
+| `sip` | To identify SIP call signaling messages. |
+| `rtp` | To identify packets carrying voice data. |
+| `sip.Method == "INVITE"` | To locate the packet that initiated the call. |
+
+## 💡 Key Takeaways
+
+Through this activity, I learned how SIP establishes VoIP calls and how RTP carries voice data across a network. I also practiced examining SIP INVITE messages, identifying call participants, and replaying captured audio using Wireshark.
+
+**Lesson Learned:** I learned that unencrypted VoIP traffic can expose private conversations and sensitive information. Implementing SRTP and TLS is important to protect voice communications from unauthorized access.
