@@ -10,6 +10,8 @@ Your task is to capture and analyze the network traffic using Wireshark, identif
 
 ## 📝 Investigation and Findings
 
+---
+
 ### Q1. Most of the traffic is web traffic on port 80 or 443. One computer also used a plain-text office chat tool on a different TCP port. Which port is it?
 
 **Answer: TCP Port 5000**
@@ -19,6 +21,8 @@ To identify the port used by the office chat application, I navigated to **Stati
 After reviewing the destination ports (Port B), I identified three commonly used ports: **80, 443, and 5000**. Since ports 80 and 443 are associated with web traffic, port **5000** was identified as the port used by the plain-text chat application.
 
 ![TCP Conversations](https://github.com/user-attachments/assets/620cb062-5c74-45fd-a697-b5aae9b9fbcd)
+
+---
 
 ### Q2. The chat uses TCP port 5000. Which IP address started the chat? (The computer that sends the first SYN packet starts the connection.)
 
@@ -31,6 +35,8 @@ I applied the following Wireshark display filter to isolate traffic using TCP po
 I then examined the TCP handshake and identified the source IP address of the first SYN packet. The computer with IP address **192.168.10.45** initiated the connection.
 
 ![TCP Port 5000 Filter](https://github.com/user-attachments/assets/9ee740c1-0bef-4102-b6af-4b89856759e7)
+
+---
 
 ### Q3. Follow the chat using Follow → TCP Stream. What is the stream number?
 
@@ -46,11 +52,15 @@ This confirmed that the chat communication belongs to **TCP Stream 5**.
 
 ![Follow TCP Stream](https://github.com/user-attachments/assets/4b3e8d52-c8e9-4eb3-92ac-4d856087e90c)
 
+---
+
 ### Q4. How many bytes does the entire conversation contain?
 
 **Answer: 413 bytes**
 
 After opening the Follow TCP Stream window, I checked the information displayed at the bottom of the window. The entire conversation contained **413 bytes** of data.
+
+---
 
 ### Q5. What is the first name of the staff member who asks for help?
 
@@ -64,11 +74,15 @@ By examining the messages exchanged in the TCP stream, I identified **Ali** as t
 
 The conversation revealed that Ali was experiencing difficulties accessing the **Finance shared drive**.
 
+---
+
 ### Q7. What temporary password did IT provide to the staff member?
 
 **Answer: Tiger#4821**
 
 IT support provided Ali with a temporary password.
+
+---
 
 ### Q8. What is the guest Wi-Fi password?
 
