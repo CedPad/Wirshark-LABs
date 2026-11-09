@@ -10,8 +10,6 @@ Your task is to capture and analyze the network traffic using Wireshark, identif
 
 ## 📝 Investigation and Findings
 
----
-
 ### Q1. Most of the traffic is web traffic on port 80 or 443. One computer also used a plain-text office chat tool on a different TCP port. Which port is it?
 
 **Answer: TCP Port 5000**
